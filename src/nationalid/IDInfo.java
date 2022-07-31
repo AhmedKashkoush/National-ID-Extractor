@@ -8,7 +8,7 @@ public class IDInfo {
     private String gov;
     private String gender;
 
-    private String[] govList = {"Cairo", "Alex", "Port Said", "Suez","","","","","","", "Damietta", "Dakahlia", "Sharkia", "Qalyubi", "Kafr El-Sheikh", "Gharbiya", "Menoufia", "Beheira", "Ismailia","" ,"Giza", "Bani Sweif", "Fayoum", "Minya", "Asyut", "Sohag", "Qena", "Aswan", "Luxor","", "Red Sea", "New Valley", "Marsa Matroh", "North Sinai", "South of Sinai", "Outside Egypt"};
+    private final String[] govList = {"Cairo", "Alex", "Port Said", "Suez","","","","","","", "Damietta", "Dakahlia", "Sharkia", "Qalyubi", "Kafr El-Sheikh", "Gharbiya", "Menoufia", "Beheira", "Ismailia","" ,"Giza", "Bani Sweif", "Fayoum", "Minya", "Asyut", "Sohag", "Qena", "Aswan", "Luxor","", "Red Sea", "New Valley", "Marsa Matroh", "North Sinai", "South of Sinai", "Outside Egypt"};
 
     public String getDate() {
         String date = this.year + '/' + this.month + '/' + this.day;
