@@ -7,8 +7,9 @@ public class IDInfo {
     private String day;
     private String gov;
     private String gender;
+    private String errorMsg;
 
-    private final String[] govList = {"Cairo", "Alex", "Port Said", "Suez","","","","","","", "Damietta", "Dakahlia", "Sharkia", "Qalyubi", "Kafr El-Sheikh", "Gharbiya", "Menoufia", "Beheira", "Ismailia","" ,"Giza", "Bani Sweif", "Fayoum", "Minya", "Asyut", "Sohag", "Qena", "Aswan", "Luxor","", "Red Sea", "New Valley", "Marsa Matroh", "North Sinai", "South of Sinai", "Outside Egypt"};
+    private final String[] govList = {"Cairo", "Alex", "Port Said", "Suez", "", "", "", "", "", "", "Damietta", "Dakahlia", "Sharkia", "Qalyubi", "Kafr El-Sheikh", "Gharbiya", "Menoufia", "Beheira", "Ismailia", "", "Giza", "Bani Sweif", "Fayoum", "Minya", "Asyut", "Sohag", "Qena", "Aswan", "Luxor", "", "Red Sea", "New Valley", "Marsa Matroh", "North Sinai", "South of Sinai", "Outside Egypt"};
 
     public String getDate() {
         String date = this.year + '/' + this.month + '/' + this.day;
@@ -32,14 +33,34 @@ public class IDInfo {
         return this.gender;
     }
 
+    public String getErrorMsg() {
+        return this.errorMsg;
+    }
+
+    public void clearAll() {
+        this.year = "";
+        this.month = "";
+        this.day = "";
+        this.gov = "";
+        this.gender = "";
+        this.errorMsg = "";
+    }
+
     public void extractInfo(String id) {
         try {
             String yearStr = "";
             String monthStr = "";
             String dayStr = "";
             String govCode = "";
+            this.errorMsg = null;
+            if (id.isEmpty()) {
+                throw new Exception("Enter National ID");
+            }
             if (id.length() < 14) {
                 throw new Exception("National ID Must Be 14 Numbers");
+            }
+            if (id.length() > 14) {
+                throw new Exception("Invalid National ID");
             }
             for (int i = 0; i < id.length(); i++) {
                 Integer.parseInt(String.valueOf(id.charAt(i)));
@@ -87,7 +108,7 @@ public class IDInfo {
             int genderNum = Integer.parseInt(String.valueOf(id.charAt(id.length() - 2)));
             this.gender = genderNum % 2 == 0 ? "Female" : "Male";
         } catch (Exception e) {
-            System.out.println(e);
+            errorMsg = e.getMessage();
         }
     }
 }
